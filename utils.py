@@ -46,8 +46,8 @@ def send_message(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN):
 
     dolar = get_dolar()
     crypto = get_crypto()
-
-    client.messages.create(body=f'Hola! ¿Cómo estás? \nLas cotizaciones para hoy {dolar[0]} son: \n \nDólar oficial ${dolar[1]} \nDólar blue ${dolar[2]} \nBTC: ${crypto[0]} \nETH: ${crypto[1]} \nHasta pronto!', 
+    fecha = pd.to_datetime(dolar[0]).strftime('%d/%m')
+    client.messages.create(body=f'Hola! ¿Cómo estás? \nLas cotizaciones para hoy {fecha} son: \n \nDólar oficial ${dolar[1]} \nDólar blue ${dolar[2]} \nBTC: ${crypto[0]} \nETH: ${crypto[1]} \nHasta pronto!', 
                     from_=from_whatsapp_number, 
                     to=to_whatsapp_number)
     return print('Mensaje enviado!')
